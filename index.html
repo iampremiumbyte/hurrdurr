@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$HURRDURR</title>
+    <link rel="icon" type="image/x-icon" href="assets/HURRDURRFLAVICON-01.png">
+    <style>
+        @font-face {
+            font-family: 'Comic Sans MS';
+            src: url("assets/comici.ttf");
+        }        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .dog-container {
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            text-align: center;
+        }
+        .dog {
+            width: 37vw;
+        }
+        .hurrdurr {
+            position: absolute;
+            font-family: "Comic Sans MS", cursive;
+            font-size: 70px;
+            color: #ffd000;
+            top: 10px;
+            left: 10px;
+        }
+        .hurr {
+            position: absolute;
+            font-family: "Comic Sans MS", cursive;
+            font-size: 3.7vw;
+            color: #0800ff;
+            top: 50%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+        }
+        .durr {
+            position: absolute;
+            font-family: "Comic Sans MS", cursive;
+            font-size: 3.7vw;
+            color: #ff0000;
+            top: 50%;
+            right: 20%;
+            transform: translate(50%, -50%);
+        }
+        .random-position {
+            position: absolute;
+            font-family: "Comic Sans MS", cursive;
+            font-size: 5vw;
+            color: #ffd000;
+            top: 10px;
+            left: 10px;
+        }
+        #contract-text {
+            position: absolute;
+            top: 0;
+            right: 20;
+            font-family: "Comic Sans MS", cursive;
+            font-size: 7vw;
+            color: black; 
+}
+#twitter-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 3vw;
+    color: rgb(13, 0, 255);
+}
+#telegram-text {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 3vw;
+    color: rgb(13, 0, 255);
+}
+#start-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-family: "Comic Sans MS", cursive;
+            font-size: 5vw;
+            background-color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="start-button">GET MONEY FREE CLICK BUTTON</button>
+
+    <div id="content" style="display: none;">
+        <div class="dog-container">
+            <img src="assets/hurrdurrdog.gif" alt="Hurr Durr Dog" class="dog">
+        </div>
+        <div class="hurrdurr random-position" id="random-text">$HURRDURR</div>
+        <div class="hurr" id="text-toggle">HURR?</div>
+        <div class="random-position" id="random-image-container">
+            <img src="" id="random-image">
+        </div>
+        <div id="contract-text">CONTRACT</div>
+        <a href="https://x.com/hurrdurrsol" id="twitter-text" target="_blank">TWITTER</a>
+        <a href="https://t.me/HURRDURRSOL" id="telegram-text" target="_blank">TELEGRAM</a>
+    </div>
+
+    <audio id="background-audio" loop>
+        <source src="assets/hurrdurrdog.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="windowsXpSound" preload="auto">
+        <source src="assets/WINDOWSXPSOUND.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+
+let elapsedTime = 0; 
+        function getRandomPosition() {
+            const maxWidth = window.innerWidth - 200;
+            const maxHeight = window.innerHeight - 200;
+            const randomLeft = Math.floor(Math.random() * (maxWidth - 200));
+            const randomTop = Math.floor(Math.random() * (maxHeight - 200));
+            return { left: randomLeft + 'px', top: randomTop + 'px' };
+        }
+
+        function updateRandomPosition() {
+            const randomPosition = getRandomPosition();
+            const randomText = document.getElementById('random-text');
+            randomText.style.left = randomPosition.left;
+            randomText.style.top = randomPosition.top;
+        }
+
+        const hurrDurrText = document.getElementById('text-toggle');
+        let isHurr = true;
+
+        function toggleText() {
+            if (isHurr) {
+                hurrDurrText.innerHTML = 'DURR<span style="font-size: 1.777em;">!1</span>';
+                hurrDurrText.style.color = '#0800ff'; 
+                hurrDurrText.style.left = '77%';
+                hurrDurrText.style.top = '57%';
+            } else {
+                hurrDurrText.innerHTML = 'HURR<span style="font-size: 1.777em;">?</span>';
+                hurrDurrText.style.color = '#ff0000'; 
+                hurrDurrText.style.left = '57%';
+                hurrDurrText.style.top = '77%';
+            }
+            isHurr = !isHurr;
+        }
+
+        toggleText();
+
+        setInterval(toggleText, 1000);
+
+        updateRandomPosition();
+
+        setInterval(updateRandomPosition, 1000);
+
+        const imageUrls = [
+        'assets/WINDOWSXPBUY.png',
+        'assets/WINDOWSXPDONTSELL.png',
+        'assets/WINDOWSXPTOTHEMOON.png'
+    ];
+
+        async function getRandomImage() {
+            const randomIndex = Math.floor(Math.random() * imageUrls.length);
+            const randomImageUrl = imageUrls[randomIndex];
+
+            const audio = new Audio('assets/WINDOWSXPSOUND.mp3');
+            audio.currentTime = 0; 
+            audio.play(); 
+
+            const randomImageElement = document.createElement('img');
+            randomImageElement.src = randomImageUrl;
+            randomImageElement.style.maxWidth = '377px'; 
+            randomImageElement.style.maxHeight = '377px'; 
+
+            const randomPosition = getRandomPosition();
+            randomImageElement.style.position = 'absolute';
+            randomImageElement.style.left = randomPosition.left;
+            randomImageElement.style.top = randomPosition.top;
+
+            document.getElementById('random-image-container').appendChild(randomImageElement);
+
+            return randomImageUrl;
+        }
+
+        const initialInterval = 60000;
+let imageInterval = setInterval(async () => {
+    const randomImageUrl = await getRandomImage();
+}, initialInterval);
+
+
+const backgroundAudio = document.getElementById('background-audio');
+
+document.getElementById('start-button').addEventListener('click', function() {
+    this.style.display = 'none'
+    document.getElementById('content').style.display = 'block';
+    backgroundAudio.play();
+    setInterval(() => {
+    elapsedTime += initialInterval / 3777; 
+    if (elapsedTime >= 17) {
+        clearInterval(imageInterval); 
+        imageInterval = setInterval(async () => {
+            const randomImageUrl = await getRandomImage();
+        }, 777); 
+    }
+    if (elapsedTime >= 37) {
+        clearInterval(imageInterval); 
+        imageInterval = setInterval(async () => {
+            const randomImageUrl = await getRandomImage();
+        }, 577); 
+    }
+
+    if (elapsedTime >= 77) {
+        clearInterval(imageInterval); 
+        imageInterval = setInterval(async () => {
+            const randomImageUrl = await getRandomImage();
+        }, 177); 
+    }
+    if (elapsedTime >= 377) {
+        clearInterval(imageInterval); 
+        imageInterval = setInterval(async () => {
+            const randomImageUrl = await getRandomImage();
+        }, 77); 
+    }
+}, 3000);
+    
+});
+    </script>
+
+
+</body>
+</html>
